@@ -1,40 +1,60 @@
-# Klasifikasi 2 Kelas: Grapefruit vs Orange 
+# Citrus Classification: Oranges vs. Grapefruits 
 
-Repositori ini berisi implementasi model *Machine Learning* untuk mengklasifikasikan dua jenis buah: **Grapefruit** dan **Orange**. Proyek ini merupakan studi kasus klasifikasi biner (2 kelas) untuk membedakan kedua buah tersebut berdasarkan fitur-fitur yang tersedia dalam dataset.
+[](https://www.python.org/)
+[](https://keras.io/)
+[](https://scikit-learn.org/)
 
-## Deskripsi Proyek
+Proyek ini menggunakan **Artificial Neural Networks (ANN)** untuk mengklasifikasikan buah jeruk ke dalam dua kategori: **Orange (Jeruk)** atau **Grapefruit (Jeruk Besar)** berdasarkan karakteristik fisik seperti diameter, berat, dan nilai warna (RGB).
 
-Tujuan dari proyek ini adalah membangun model prediktif yang dapat mengidentifikasi apakah sebuah buah adalah *Grapefruit* atau *Orange* dengan tingkat akurasi yang tinggi. Proyek ini mencakup seluruh pipeline *Machine Learning*, mulai dari:
-1. *Exploratory Data Analysis* (EDA)
-2. *Data Preprocessing
-3. Pelatihan Model 
-4. Evaluasi Hasil Klasifikasi
+## Ringkasan Model
 
-## Dataset
+Model dibangun menggunakan arsitektur *Deep Learning* sederhana dengan **Keras Sequential API**. Berdasarkan data pelatihan, model ini mampu mencapai akurasi sekitar **92-93%** pada data pengujian.
 
-Dataset yang digunakan berisi sampel data buah *Grapefruit* dan *Orange*. 
-*(Opsional: Anda bisa menambahkan tautan dataset di sini, misalnya dari Kaggle).*
+### Dataset
 
-Fitur yang umumnya dianalisis dalam dataset tabular semacam ini meliputi:
-*   `diameter`: Diameter buah
-*   `weight`: Berat buah
-*   `red`, `green`, `blue`: Nilai intensitas warna RGB buah
+Dataset terdiri dari **10.000 sampel** buah dengan fitur-fitur berikut:
 
-## Persyaratan
+  * `diameter`: Diameter buah.
+  * `weight`: Berat buah.
+  * `red`, `green`, `blue`: Nilai rata-rata warna dalam skala RGB.
+  * `name`: Label target (Orange atau Grapefruit).
 
-Pastikan Anda telah menginstal **Python** (disarankan versi 3.8 ke atas). Beberapa *library* utama yang dibutuhkan dalam proyek ini meliputi:
-*   `pandas`
-*   `numpy`
-*   `scikit-learn`
-*   `matplotlib`
-*   `seaborn`
-*   `jupyter` (jika kamu menggunakan Jupyter Notebook)
+## Langkah Eksperimen
 
-## Cara Menjalankan 
+### 1\. Preprocessing Data
 
-Ikuti langkah-langkah berikut untuk menjalankan proyek ini di mesin lokal Anda:
+  * **Label Encoding**: Mengubah label tekstual (`orange` & `grapefruit`) menjadi nilai numerik (0 dan 1).
+  * **Feature Scaling**: Menggunakan `MinMaxScaler` untuk menormalkan rentang nilai fitur agar model konvergen lebih cepat.
+  * **Train-Test Split**: Membagi data dengan rasio **70% Pelatihan** dan **30% Pengujian**.
 
-1. **Clone repositori ini:**
-   ```bash
-   git clone [https://github.com/nnda-fr/klasifikasi-2-kelas.git](https://github.com/nnda-fr/klasifikasi-2-kelas.git)
-   cd klasifikasi-2-kelas
+### 2\. Arsitektur Neural Network
+
+Model terdiri dari tiga lapisan *Dense*:
+
+  * **Input Layer**: 32 neuron, aktivasi ReLU.
+  * **Hidden Layer**: 32 neuron, aktivasi ReLU.
+  * **Output Layer**: 1 neuron, aktivasi Sigmoid (untuk klasifikasi biner).
+
+### 3\. Kompilasi & Pelatihan
+
+  * **Optimizer**: Stochastic Gradient Descent (SGD).
+  * **Loss Function**: Binary Crossentropy.
+  * **Epochs**: 100.
+
+## Hasil Evaluasi
+
+Setelah proses pelatihan selama 100 epoch, model memberikan performa yang sangat solid:
+
+| Metric | Score |
+| :--- | :--- |
+| **Training Accuracy** | \~92.8% |
+| **Test Accuracy** | **92.3%** |
+| **Test Loss** | 0.1855 |
+
+## Cara Penggunaan
+
+1.  Pastikan kamu memiliki library yang dibutuhkan: `pandas`, `scikit-learn`, dan `keras`.
+2.  Muat dataset `citrus.csv`.
+3.  Jalankan notebook `klasifikasi_dua_kelas.ipynb`.
+
+-----
